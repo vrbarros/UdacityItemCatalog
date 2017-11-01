@@ -19,4 +19,11 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
+    url(r'^categories/$', views.categories, name='categories'),
+    url(r'^items/(?P<view>[\w-]+)/$', views.items, name='items'),
+    url(r'^items/add/$', views.items_add, name='items_add'),
+    url(r'^items/(?P<id>[\w-]+)/edit/$',
+        views.items_edit, name='items_edit'),
+    url(r'^items/(?P<id>[\w-]+)/delete/$',
+        views.items_delete, name='items_delete'),
 ]

@@ -1,1 +1,70 @@
-{% extends "manager/base.html" %} {% block content %} {% endblock %}
+{% extends "manager/base.html" %} {% block content %}
+
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
+  <div class="container">
+    <h1 class="display-3">Hello!</h1>
+    <p>This is a simple application that manages items and categories in order to keep information organized for the user. It is part of Fullstack Nanodegree project from Udacity. ;-)</p>
+    <p><a class="btn btn-primary btn-lg" href="https://www.udacity.com/" role="button">Learn more about Udacity &raquo;</a></p>
+  </div>
+</div>
+
+<div class="container">
+  <!-- Example row of columns -->
+  <div class="row">
+    <div class="col-md-4">
+      <h2>Categories</h2>
+      <ul class="list-unstyled">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+        <li>Item 4</li>
+        <li>Item 5</li>
+        <li>Item 6</li>
+        <li>Item 7</li>
+        <li>Item 8</li>
+        <li>Item 9</li>
+        <li>Item 10</li>
+      </ul>
+      <p><a class="btn btn-secondary" href="{% url 'manager:categories' %}" role="button">View more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+      <h2>Latest added items</h2>
+      <ul class="list-unstyled">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+        <li>Item 4</li>
+        <li>Item 5</li>
+        <li>Item 6</li>
+        <li>Item 7</li>
+        <li>Item 8</li>
+        <li>Item 9</li>
+        <li>Item 10</li>
+      </ul>
+      <p><a class="btn btn-secondary" href="{% url 'manager:items' view='added' %}" role="button">View more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+      <h2>Latest changed items</h2>
+      <ul class="list-unstyled">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+        <li>Item 4</li>
+        <li>Item 5</li>
+        <li>Item 6</li>
+        <li>Item 7</li>
+        <li>Item 8</li>
+        <li>Item 9</li>
+        <li>Item 10</li>
+      </ul>
+      <p><a class="btn btn-secondary" href="{% url 'manager:items' view='changed' %}" role="button">View more &raquo;</a></p>
+    </div>
+  </div>
+
+  <hr>
+
+</div>
+<!-- /container -->
+
+{% endblock %}
