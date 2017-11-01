@@ -1,6 +1,8 @@
 from django.conf import settings
 from django.contrib import admin
 from django.db import models
+from django.utils.html import format_html
+from django.utils.safestring import mark_safe
 
 # Create your models here.
 
@@ -14,7 +16,7 @@ class CategoriesAdmin(admin.ModelAdmin):
 class Categories(models.Model):
     """Categories model."""
 
-    ID = models.AutoField(primary_key=True, default=0)
+    ID = models.AutoField(primary_key=True)
     Name = models.CharField(max_length=30)
     Icon = models.CharField(max_length=250)
 
@@ -35,7 +37,7 @@ class ItemsAdmin(admin.ModelAdmin):
 class Items(models.Model):
     """Items model."""
 
-    ID = models.AutoField(primary_key=True, default=0)
+    ID = models.AutoField(primary_key=True)
     Title = models.CharField(max_length=50)
     Description = models.CharField(max_length=250)
     Category = models.ForeignKey(Categories, on_delete=models.CASCADE)
