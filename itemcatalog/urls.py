@@ -23,4 +23,5 @@ urlpatterns = [
         name='index'),
     url(r'^admin/', admin.site.urls),
     url(r'^manager/', include('manager.urls', namespace='manager')),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
