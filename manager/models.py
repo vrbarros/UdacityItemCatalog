@@ -1,19 +1,41 @@
 from django.conf import settings
+from django.contrib import admin
 from django.db import models
 
 # Create your models here.
 
 
+class CategoriesAdmin(admin.ModelAdmin):
+    """Categories admin."""
+
+    list_display = ('ID', 'Icon', 'Name')
+
+
 class Categories(models.Model):
     """Categories model."""
 
+    ID = models.AutoField(primary_key=True, default=0)
     Name = models.CharField(max_length=30)
     Icon = models.CharField(max_length=250)
+
+    class Meta:
+        """Change table name to more friendly."""
+
+        verbose_name = ("Category")
+        verbose_name_plural = ("Categories")
+
+
+class ItemsAdmin(admin.ModelAdmin):
+    """Categories admin."""
+
+    list_display = ('ID', 'Title', 'Category',
+                    'User', 'CreatedAt', 'ChangedAt')
 
 
 class Items(models.Model):
     """Items model."""
 
+    ID = models.AutoField(primary_key=True, default=0)
     Title = models.CharField(max_length=50)
     Description = models.CharField(max_length=250)
     Category = models.ForeignKey(Categories, on_delete=models.CASCADE)
@@ -22,3 +44,9 @@ class Items(models.Model):
     # Keep track of data usage
     CreatedAt = models.DateTimeField(auto_now_add=True, blank=False)
     ChangedAt = models.DateTimeField(auto_now_add=True, blank=False)
+
+    class Meta:
+        """Change table name to more friendly."""
+
+        verbose_name = ("Item")
+        verbose_name_plural = ("Items")
