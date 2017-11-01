@@ -15,13 +15,17 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 from django.views.generic.base import RedirectView
 
 urlpatterns = [
     url(r'^$', RedirectView.as_view(
         url='/manager/', permanent=False),
         name='index'),
+    url(r'^login/$', auth_views.login, name='login'),
+    url(r'^logout/$', auth_views.logout, name='logout'),
     url(r'^admin/', admin.site.urls),
     url(r'^manager/', include('manager.urls', namespace='manager')),
+    url(r'^oauth/', include('social_django.urls', namespace='social')),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
