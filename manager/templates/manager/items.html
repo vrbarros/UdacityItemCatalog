@@ -1,1 +1,51 @@
-{% extends "manager/base.html" %} {% block content %} {% endblock %}
+{% extends "manager/base.html" %} {% block content %}
+
+<div class="container">
+  <!-- Example row of columns -->
+  <div class="row">
+    <div class="col-md-4">
+      <h2>Categories</h2> {% for category in categories %}
+      <div style="margin-bottom: 5px;">
+        <a class="btn btn-primary" href="{% url 'manager:items_category' view='all' category=category.ID %}">
+          <li class="{{ category.Icon }}"></li>
+          {{ category.Name }}
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="col-md-4">
+      {% if items %}
+      <h2>Items</h2>
+      <ul class="list-unstyled">
+        {% for item in items %}
+        <li>
+          <a href="{% url 'manager:items_item' view='all' category=item.Category.ID item=item.ID %}">
+            {{ item.Title }}
+          </a>
+          <span class="badge badge-secondary"><i class="{{ item.Category.Icon }}"></i> {{ item.Category.Name }}</span>
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+    <div class="col-md-4">
+      {% if details %}
+      <h2>{{ details.Title }}</h2>
+      <p><span class="badge badge-secondary"> <i class="{{ details.Category.Icon }}"></i> {{ details.Category.Name }}</span> <span class="badge badge-success"><i class="fa fa-user"></i> {{ details.User.username }}</span></p>
+      <p>{{ details.Description }}</p>
+      <p><strong>Created:</strong> {{ details.CreatedAt }}</p>
+      <p><strong>Changed:</strong> {{ details.ChangedAt }}</p>
+      {% if request.user.is_authenticated %} {% if request.user == details.User %}
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-warning">Edit</button>
+        <button type="button" class="btn btn-danger">Delete</button>
+      </div>
+      {% endif %} {% endif %} {% endif %}
+    </div>
+  </div>
+
+  <hr>
+
+</div>
+
+{% endblock %}

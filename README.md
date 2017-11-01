@@ -19,6 +19,8 @@ I made this program made as part of Udacity Fullstack Development Nanodegree cou
 `127.0.0.1  mylocaldjangoapp.com`
 4) Use the command to start the server
 `python manage.py runserver mylocaldjangoapp.com:80`
+5) The default username and password for admin panel is:
+`webmaster  webmaster1234`
 
 # Editing your /etc/hosts file on a Mac
 

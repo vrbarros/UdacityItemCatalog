@@ -20,6 +20,10 @@ class Categories(models.Model):
     Name = models.CharField(max_length=30)
     Icon = models.CharField(max_length=250)
 
+    def __str__(self):
+        """Change field to more friendly value."""
+        return self.Name
+
     class Meta:
         """Change table name to more friendly."""
 
@@ -46,6 +50,10 @@ class Items(models.Model):
     # Keep track of data usage
     CreatedAt = models.DateTimeField(auto_now_add=True, blank=False)
     ChangedAt = models.DateTimeField(auto_now_add=True, blank=False)
+
+    def __str__(self):
+        """Change field to more friendly value."""
+        return self.Title
 
     class Meta:
         """Change table name to more friendly."""
