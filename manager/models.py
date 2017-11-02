@@ -1,8 +1,6 @@
 from django.conf import settings
 from django.contrib import admin
 from django.db import models
-from django.utils.html import format_html
-from django.utils.safestring import mark_safe
 
 # Create your models here.
 
@@ -32,7 +30,7 @@ class Categories(models.Model):
 
 
 class ItemsAdmin(admin.ModelAdmin):
-    """Categories admin."""
+    """Items admin."""
 
     list_display = ('ID', 'Title', 'Category',
                     'User', 'CreatedAt', 'ChangedAt')

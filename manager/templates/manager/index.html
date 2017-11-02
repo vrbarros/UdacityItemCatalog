@@ -15,7 +15,7 @@
     <div class="col-md-4">
       <h2>Categories</h2> {% for category in categories %}
       <div style="margin-bottom: 5px;">
-        <a class="btn btn-secondary" href="{% url 'manager:items_category' view='all' category=category.ID %}">
+        <a class="btn btn-outline-secondary" href="{% url 'manager:items_category' view='all' category=category.ID %}">
           <li class="{{ category.Icon }}"></li>
           {{ category.Name }}
         </a>
@@ -25,31 +25,27 @@
       <p><a class="btn btn-primary" href="{% url 'manager:categories' %}" role="button">View more &raquo;</a></p>
     </div>
     <div class="col-md-4">
-      <h2>Latest added items</h2>
-      <ul class="list-unstyled">
-        {% for item in added %}
-        <li>
-          <a href="{% url 'manager:items_item' view='all' category=item.Category.ID item=item.ID %}">
+      <h2>Latest added items</h2> {% for item in added %}
+      <div style="margin-bottom: 5px;">
+        <a class="btn btn-outline-secondary" href="{% url 'manager:items_item' view='added' category=item.Category.ID item=item.ID %}">
             {{ item.Title }}
+            <span class="badge badge-secondary">{{ item.Category.Name }}</span>
           </a>
-          <span class="badge badge-secondary">{{ item.Category.Name }}</span>
-        </li>
-        {% endfor %}
-      </ul>
+      </div>
+      {% endfor %}
+
       <p><a class="btn btn-primary" href="{% url 'manager:items' view='added' %}" role="button">View more &raquo;</a></p>
     </div>
     <div class="col-md-4">
-      <h2>Latest changed items</h2>
-      <ul class="list-unstyled">
-        {% for item in changed %}
-        <li>
-          <a href="{% url 'manager:items_item' view='all' category=item.Category.ID item=item.ID %}">
-            {{ item.Title }}
+      <h2>Latest changed items</h2> {% for item in changed %}
+      <div style="margin-bottom: 5px;">
+        <a class="btn btn-outline-secondary" href="{% url 'manager:items_item' view='changed' category=item.Category.ID item=item.ID %}">
+            {{ item.Title }} <span class="badge badge-secondary">{{ item.Category.Name }}</span>
           </a>
-          <span class="badge badge-secondary">{{ item.Category.Name }}</span>
-        </li>
-        {% endfor %}
-      </ul>
+
+      </div>
+      {% endfor %}
+
       <p><a class="btn btn-primary" href="{% url 'manager:items' view='changed' %}" role="button">View more &raquo;</a></p>
     </div>
   </div>

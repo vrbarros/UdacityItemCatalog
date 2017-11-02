@@ -6,27 +6,27 @@
     <div class="col-md-4">
       <h2>Categories</h2> {% for category in categories %}
       <div style="margin-bottom: 5px;">
-        <a class="btn btn-primary" href="{% url 'manager:items_category' view='all' category=category.ID %}">
+        <a class="btn btn-outline-primary" href="{% url 'manager:items_category' view='all' category=category.ID %}">
           <li class="{{ category.Icon }}"></li>
           {{ category.Name }}
         </a>
       </div>
       {% endfor %}
+      <div style="margin-bottom: 5px;">
+        <a class="btn btn-primary" href="{% url 'manager:items' view='all' %}">
+          Show all items
+        </a>
+      </div>
     </div>
     <div class="col-md-4">
       {% if items %}
-      <h2>Items</h2>
-      <ul class="list-unstyled">
-        {% for item in items %}
-        <li>
-          <a href="{% url 'manager:items_item' view='all' category=item.Category.ID item=item.ID %}">
-            {{ item.Title }}
+      <h2>Items</h2> {% for item in items %}
+      <div style="margin-bottom: 5px;">
+        <a class="btn btn-outline-secondary" href="{% url 'manager:items_item' view='all' category=item.Category.ID item=item.ID %}">
+            {{ item.Title }} <span class="badge badge-secondary"><i class="{{ item.Category.Icon }}"></i> {{ item.Category.Name }}</span>
           </a>
-          <span class="badge badge-secondary"><i class="{{ item.Category.Icon }}"></i> {{ item.Category.Name }}</span>
-        </li>
-        {% endfor %}
-      </ul>
-      {% endif %}
+      </div>
+      {% endfor %} {% endif %}
     </div>
     <div class="col-md-4">
       {% if details %}
@@ -37,8 +37,8 @@
       <p><strong>Changed:</strong> {{ details.ChangedAt }}</p>
       {% if request.user.is_authenticated %} {% if request.user == details.User %}
       <div class="btn-group" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-warning">Edit</button>
-        <button type="button" class="btn btn-danger">Delete</button>
+        <a href="{% url 'manager:items_edit' id=details.ID %}" class="btn btn-warning">Edit</a>
+        <a href="{% url 'manager:items_delete' id=details.ID %}" class="btn btn-danger">Delete</a>
       </div>
       {% endif %} {% endif %} {% endif %}
     </div>

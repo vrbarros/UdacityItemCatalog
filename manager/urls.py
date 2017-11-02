@@ -20,14 +20,16 @@ from . import views
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^categories/$', views.categories, name='categories'),
+    url(r'^items/add/$', views.items_add, name='items_add'),
+    url(r'^items/edit/(?P<id>[\w-]+)/$',
+        views.items_edit, name='items_edit'),
+    url(r'^items/delete/(?P<id>[\w-]+)/$',
+        views.items_delete, name='items_delete'),
+    # This URL's needed to be at the end of the array to avoid confusion with CRUD
     url(r'^items/(?P<view>[\w-]+)/$', views.items, name='items'),
     url(r'^items/(?P<view>[\w-]+)/(?P<category>[\w-]+)/$',
         views.items, name='items_category'),
     url(r'^items/(?P<view>[\w-]+)/(?P<category>[\w-]+)/(?P<item>[\w-]+)/$',
         views.items, name='items_item'),
-    url(r'^items/add/$', views.items_add, name='items_add'),
-    url(r'^items/(?P<id>[\w-]+)/edit/$',
-        views.items_edit, name='items_edit'),
-    url(r'^items/(?P<id>[\w-]+)/delete/$',
-        views.items_delete, name='items_delete'),
+
 ]
