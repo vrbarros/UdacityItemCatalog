@@ -34,6 +34,6 @@ You may be asked for your password to edit the file. Enter your password.
 
 You can now add entries to the file.
 
-#Editing your /etc/hosts file using Windows
+# Editing your /etc/hosts file using Windows
 
 If you're using Windows, to edit your \etc\hosts file, open [SystemRoot]\system32\drivers\etc\hosts and edit the file. (The \etc\hosts file usually exists at %windir%\system32\drivers\etc\hosts.) If the directory and file don't exist, you can create them. Some versions of Windows require that users have admin privileges to create or make changes to this file.
