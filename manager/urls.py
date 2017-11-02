@@ -18,6 +18,7 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
+    url(r'^api/$', views.api, name='api'),
     url(r'^$', views.index, name='index'),
     url(r'^categories/$', views.categories, name='categories'),
     url(r'^items/add/$', views.items_add, name='items_add'),

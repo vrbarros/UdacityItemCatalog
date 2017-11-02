@@ -1,14 +1,31 @@
 import datetime
 
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import redirect
 from django.template import loader
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.parsers import JSONParser
+from rest_framework.renderers import JSONRenderer
 
 from .forms import ItemsForm
 from .models import Categories, Items
+from .serializers import CategoriesSerializer
 
 # Create your views here.
+
+
+@csrf_exempt
+def api(request):
+    """URL: /api/."""
+    # Check if it is a GET method
+    if request.method == 'GET':
+        # Get all objects from categories
+        categories = Categories.objects.all()
+        # Serializer the data using our model
+        serializer = CategoriesSerializer(categories, many=True)
+        # Return to the browser
+        return JsonResponse(serializer.data, safe=False)
 
 
 def index(request):
@@ -51,7 +68,7 @@ def items(request, view, category=None, item=None):
 
     # Check about view context and variables
     if ('added' in view):
-        # Order items by creation date
+            # Order items by creation date
         items = Items.objects.all().order_by('CreatedAt')
     elif 'changed' in view:
         # Order items by edit date
